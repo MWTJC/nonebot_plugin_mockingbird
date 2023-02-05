@@ -1,5 +1,4 @@
 import json
-import os
 from pathlib import Path
 from typing import Optional
 
@@ -10,7 +9,7 @@ from .download import get_model_list_file
 
 global_config = nonebot.get_driver().config
 if not hasattr(global_config, "mockingbird_path"):
-    MOCKINGBIRD_PATH = os.path.join(os.path.dirname(__file__), "resource")
+    MOCKINGBIRD_PATH = Path() / "data" / "mockingbird"
 else:
     MOCKINGBIRD_PATH = global_config.mockingbird_path
 
@@ -79,10 +78,7 @@ class MockingBirdManager:
         self.save_data()
 
     def get_config(self, config_name: str):
-        """
-        获取配置
-        """
-        return self.config.get(config_name)
+        return self.config[config_name]
 
     def get_list(self) -> list:
         """
@@ -109,4 +105,4 @@ class MockingBirdManager:
         self.load_model_list()
         return msg
 
-Config = MockingBirdManager(Path(MOCKINGBIRD_PATH))
+Manager = MockingBirdManager(Path(MOCKINGBIRD_PATH))

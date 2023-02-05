@@ -1,9 +1,59 @@
+import asyncio
 import re
+import json
+import uuid
 import httpx
+import langid
+import traceback
 from io import BytesIO
-from typing import Optional
+from typing import Optional, Union
 from pydub import AudioSegment
 from pydub.silence import detect_silence
+
+from configs.config import Config
+from tencentcloud.common import credential
+from tencentcloud.tts.v20190823 import tts_client, models
+
+from nonebot.log import logger
+
+
+async def get_voice(text, type=0) -> Optional[Union[str, BytesIO]]:
+    try:
+        if langid.classify(text)[0] == "ja":
+            voice = await get_ai_voice(text, type)
+        else:
+            voice = await get_tx_voice(text, type)
+        return voice
+    except:
+        logger.warning(traceback.format_exc())
+        return None
+
+
+async def get_tx_voice(text, type=0) -> str:
+    cred = credential.Credential(
+        Config.get_config("mockingbird","TENCENT_SECRET_ID"), Config.get_config("mockingbird","TENCENT_SECRET_KEY")
+    )
+    client = tts_client.TtsClient(cred, "ap-shanghai")
+    req = models.TextToVoiceRequest()
+
+    if type == 0:
+        voice_type = 101016
+    else:
+        voice_type = 101010
+
+    params = {
+        "Text": text,
+        "SessionId": str(uuid.uuid1()),
+        "Volume": 5,
+        "Speed": 1,
+        "ProjectId": int(4587666),
+        "ModelType": 1,
+        "VoiceType": voice_type,
+    }
+    req.from_json_string(json.dumps(params))
+    loop = asyncio.get_event_loop()
+    resp = await loop.run_in_executor(None, client.TextToVoice, req) 
+    return f"base64://{resp.Audio}"
 
 
 async def get_ai_voice(text, type=0) -> Optional[BytesIO]:

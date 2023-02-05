@@ -1,63 +1,25 @@
-## nonebot_plugin_mockingbird
+## RE:MockingBird 语音(真寻适配版)
+基于在真寻插件库出现过的真寻版MockingBird制。
 
-此项目灵感来源于 [Diaosi1111/nonebot_mockingbird_plugin](https://github.com/Diaosi1111/nonebot_mockingbird_plugin)
+食用方法：把装了一堆py文件的文件夹丢进真寻插件目录即可。
 
-### 食用方法
+本人作出的更改仅仅只有注释掉过期的`nonebot.export`方法以保障插件于2.0.0rc2的nonebot中能运作。
 
-1. 使用 nb-cli
+已测试能在Python3.10环境下正常运行,且可与nonebot_plugin_tts_gal插件共存。
+测试环境如下：(win)
+* 真寻bot: 1.6.6
+* mockingbirdforuse: 0.2.3
+* torch: 1.13.1
+* numba: 0.56.4
+* numpy: 1.23.5
+* nonebot2: 2.0.0rc2
 
-```shell
-nb plugin install nonebot_plugin_mockingbird
-```
+对于部分py3.10不能使用此插件的现象，本人猜测是包`mockingbirdforuse`的依赖信息陈旧导致：
 
-2. 使用 pip
+用pip安装`numpy`及`torch`时，pip认为新版本`numpy`及`torch`不能满足`mockingbirdforuse`的要求，而py3.10中又不存在符合`mockingbirdforuse`所要求的旧版本`torch`，导致不能正常安装依赖环境。所以使用pip安装完后，如pip报错“pip不能正确处理`mockingbirdforuse`的依赖关系…”甚么的信息，请无视。
 
-```shell
-pip install nonebot_plugin_mockingbird
-```
+本人已更改原有的requirements.txt以符合此测试环境。
 
-### 使用方法
+原README文件及使用说明见根目录下README.old.md。
 
-使用：
-
-```
-@Bot 说 [你想要bot说的话]
-```
-
-其他操作：
-
-```
-显示模型 # 显示出可供修改的模型
-# 修改指令
-修改模型 [序号]\[模型名称]
-重载模型 进行模型重载(并没有什么卵用，或许以后内存泄漏解决会有用？)
-调整/修改精度 修改语音合成精度
-调整/修改句长 修改语音合成最大句长
-更新模型 更新模型列表
-```
-
-### 欢迎pr提供模型和模型下载地址
-
-在 [nonebot_plugin_mockingbird/resource/model_list.json](https://github.com/AkashiCoin/nonebot_plugin_mockingbird/blob/master/nonebot_plugin_mockingbird/resource/model_list.json) 中添加
-
-json 模板
-```json
-{
-  "azusa": {
-    "nickname": "阿梓语音",
-    "url": {
-      "record_url": "https://pan.yropo.top/home/source/mockingbird/azusa/record.wav",
-      "model_url": "https://pan.yropo.top/home/source/mockingbird/azusa/azusa.pt"
-    }
-  }
-}
-```
-
-### 特别感谢
-
-- [Diaosi1111/nonebot_mockingbird_plugin](https://github.com/Diaosi1111/nonebot_mockingbird_plugin)
-- [babysor/MockingBird](https://github.com/babysor/MockingBird)
-- [HibiKier/zhenxun_bot](https://github.com/HibiKier/zhenxun_bot) 基于 Nonebot2 和 go-cqhttp 开发，以 postgresql 作为数据库，非常可爱的绪山真寻bot
-- [MeetWq/mybot](https://github.com/MeetWq/mybot)
-- [MeetWq/MockingBirdForUse](https://github.com/MeetWq/MockingBirdForUse)
-
+原项目：https://github.com/AkashiCoin/nonebot_plugin_mockingbird

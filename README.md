@@ -28,11 +28,9 @@
 
 （磁力链采用比特彗星做种，民用宽带网络差，如用不了请勿反馈）
 
-'''
-pan.baidu.com/s/1q-zid5Q_36KrdN7W_XTdAw?pwd=bird 
+`pan.baidu.com/s/1q-zid5Q_36KrdN7W_XTdAw?pwd=bird `
 
-fe316cd08f3b3266b97aabdb373dc1d8f026c06411003dacf0526d26601040ff
-'''
+`fe316cd08f3b3266b97aabdb373dc1d8f026c06411003dacf0526d26601040ff`
 
 原README文件及使用说明见根目录下README.old.md。
 

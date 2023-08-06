@@ -22,6 +22,18 @@
 
 本人已更改原有的requirements.txt以符合此测试环境。
 
+* 20230806附加：
+
+本人在issue的提醒下，发现原作者提供的模型文件及配置文件已不能下载，故在此放出本人存档自用的`真寻bot/data/mockingbird`文件夹下的文件，包含配置与模型文件；度盘链和磁力链如下：
+
+（磁力链采用比特彗星做种，民用宽带网络差，如用不了请勿反馈）
+
+'''
+pan.baidu.com/s/1q-zid5Q_36KrdN7W_XTdAw?pwd=bird 
+
+fe316cd08f3b3266b97aabdb373dc1d8f026c06411003dacf0526d26601040ff
+'''
+
 原README文件及使用说明见根目录下README.old.md。
 
 原项目：https://github.com/AkashiCoin/nonebot_plugin_mockingbird
